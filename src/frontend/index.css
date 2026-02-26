@@ -1,0 +1,311 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Electric Blue Dark Theme */
+    --background: 0.08 0.02 264;
+    --foreground: 0.97 0.01 220;
+    --card: 0.12 0.04 250;
+    --card-foreground: 0.95 0.01 220;
+    --popover: 0.11 0.03 255;
+    --popover-foreground: 0.97 0.01 220;
+    --primary: 0.72 0.19 220;
+    --primary-foreground: 0.06 0.02 264;
+    --secondary: 0.16 0.06 240;
+    --secondary-foreground: 0.85 0.08 220;
+    --muted: 0.14 0.03 250;
+    --muted-foreground: 0.62 0.07 230;
+    --accent: 0.75 0.22 215;
+    --accent-foreground: 0.06 0.02 264;
+    --destructive: 0.57 0.24 27;
+    --destructive-foreground: 0.97 0 0;
+    --border: 0.25 0.08 240;
+    --input: 0.18 0.06 240;
+    --ring: 0.65 0.18 220;
+
+    /* Chart tokens */
+    --chart-1: 0.72 0.19 220;
+    --chart-2: 0.68 0.2 240;
+    --chart-3: 0.65 0.22 260;
+    --chart-4: 0.70 0.17 200;
+    --chart-5: 0.55 0.14 270;
+
+    /* Sidebar tokens */
+    --sidebar: 0.10 0.03 260;
+    --sidebar-foreground: 0.95 0.01 220;
+    --sidebar-primary: 0.72 0.19 220;
+    --sidebar-primary-foreground: 0.06 0.02 264;
+    --sidebar-accent: 0.16 0.06 240;
+    --sidebar-accent-foreground: 0.85 0.08 220;
+    --sidebar-border: 0.25 0.08 240;
+    --sidebar-ring: 0.65 0.18 220;
+
+    /* Custom electric tokens */
+    --electric-blue: oklch(0.72 0.19 220);
+    --electric-cyan: oklch(0.82 0.18 200);
+    --electric-glow: oklch(0.72 0.19 220 / 0.5);
+    --electric-glow-strong: oklch(0.72 0.19 220 / 0.8);
+    --deep-space: oklch(0.06 0.02 270);
+    --navy: oklch(0.10 0.04 260);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Orbitron', monospace;
+  }
+}
+
+@layer utilities {
+  /* Electric glow text effect */
+  .text-glow {
+    text-shadow:
+      0 0 10px var(--electric-blue),
+      0 0 20px var(--electric-blue),
+      0 0 40px var(--electric-blue),
+      0 0 80px oklch(0.72 0.19 220 / 0.4);
+  }
+
+  .text-glow-sm {
+    text-shadow:
+      0 0 6px var(--electric-blue),
+      0 0 12px var(--electric-blue);
+  }
+
+  /* Glassmorphism card */
+  .glass-card {
+    background: oklch(0.12 0.04 250 / 0.6);
+    border: 1px solid oklch(0.72 0.19 220 / 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+      0 0 20px oklch(0.72 0.19 220 / 0.15),
+      inset 0 1px 0 oklch(0.72 0.19 220 / 0.1);
+  }
+
+  .glass-card-hover {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .glass-card-hover:hover {
+    border-color: oklch(0.72 0.19 220 / 0.6);
+    box-shadow:
+      0 0 35px oklch(0.72 0.19 220 / 0.3),
+      0 0 70px oklch(0.72 0.19 220 / 0.1),
+      inset 0 1px 0 oklch(0.72 0.19 220 / 0.2);
+  }
+
+  /* Electric border animation */
+  .electric-border {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .electric-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      oklch(0.72 0.19 220 / 0.8),
+      oklch(0.82 0.18 200 / 0.2),
+      oklch(0.72 0.19 220 / 0.8),
+      oklch(0.55 0.22 250 / 0.4)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: electric-rotate 3s linear infinite;
+  }
+
+  /* Button glow */
+  .btn-electric {
+    background: linear-gradient(135deg, oklch(0.72 0.19 220), oklch(0.55 0.22 250));
+    box-shadow:
+      0 0 15px oklch(0.72 0.19 220 / 0.5),
+      0 4px 15px oklch(0.72 0.19 220 / 0.3);
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-electric:hover {
+    box-shadow:
+      0 0 30px oklch(0.72 0.19 220 / 0.8),
+      0 6px 25px oklch(0.72 0.19 220 / 0.5);
+    transform: translateY(-1px);
+  }
+
+  .btn-electric:active {
+    transform: translateY(0px);
+  }
+
+  /* Nav tab glow */
+  .nav-active {
+    color: var(--electric-blue);
+    border-bottom: 2px solid var(--electric-blue);
+    text-shadow: 0 0 8px var(--electric-blue);
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes electric-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 10px var(--electric-blue),
+      0 0 20px var(--electric-blue),
+      0 0 40px var(--electric-blue);
+  }
+  50% {
+    text-shadow:
+      0 0 20px var(--electric-blue),
+      0 0 40px var(--electric-blue),
+      0 0 80px var(--electric-blue),
+      0 0 120px oklch(0.72 0.19 220 / 0.6);
+  }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.7; }
+}
+
+@keyframes spark-fly {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-80px) translateX(var(--spark-x, 40px)) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.4; }
+  33% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+  66% { transform: translateY(-10px) translateX(-8px); opacity: 0.6; }
+}
+
+@keyframes electric-arc {
+  0% { stroke-dashoffset: 1000; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-right {
+  from { transform: translateX(-30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
+.animate-flicker { animation: flicker 4s linear infinite; }
+.animate-slide-up { animation: slide-up 0.6s ease forwards; }
+.animate-slide-right { animation: slide-right 0.6s ease forwards; }
+.animate-fade-in { animation: fade-in 0.8s ease forwards; }
+.animate-float { animation: float-particle 4s ease-in-out infinite; }
+
+/* Delay utilities */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* Shimmer text effect */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    oklch(0.72 0.19 220),
+    oklch(0.95 0.05 200),
+    oklch(0.82 0.18 200),
+    oklch(0.72 0.19 220)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Scanline overlay */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    oklch(0.72 0.19 220 / 0.02) 2px,
+    oklch(0.72 0.19 220 / 0.02) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: oklch(0.08 0.02 264); }
+::-webkit-scrollbar-thumb {
+  background: oklch(0.72 0.19 220 / 0.5);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: oklch(0.72 0.19 220 / 0.8); }
