@@ -879,19 +879,16 @@ function ResumePage() {
         {/* Identity Card */}
         <div className="glass-card glass-card-hover rounded-2xl p-8 mb-8 animate-slide-up delay-200">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-            {/* Profile photo */}
+            {/* Profile photo placeholder */}
             <div
-              className="w-28 h-28 rounded-full shrink-0 overflow-hidden"
+              className="w-28 h-28 rounded-full shrink-0 flex items-center justify-center"
               style={{
                 border: "2px solid oklch(0.72 0.19 220 / 0.6)",
                 boxShadow: "0 0 24px oklch(0.72 0.19 220 / 0.35)",
+                background: "oklch(0.12 0.05 255 / 0.8)",
               }}
             >
-              <img
-                src="/assets/uploads/Screenshot_20260226_154340-1.jpg"
-                alt="PRITHIVIRAJ R"
-                className="w-full h-full object-cover object-top"
-              />
+              <User className="w-14 h-14" style={{ color: "oklch(0.72 0.19 220 / 0.7)" }} />
             </div>
 
             <div className="flex-1 text-center sm:text-left">
